@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Weather Forecast App</title>
+    <link rel="stylesheet" href="./css/styles.css" />
+    <script
+      src="https://kit.fontawesome.com/b75e553fb4.js"
+      crossorigin="anonymous"
+    ></script>
+    <script src="./modules/home.js" defer></script>
+  </head>
+  <body>
+    <div class="wrapper">
+      <div class="top-ctn">
+        <div class="search-ctn">
+          <input
+            type="text"
+            class="search-input"
+            name=""
+            id=""
+            placeholder="search"
+          />
+          <i class="fa-solid fa-magnifying-glass"></i>
+        </div>
+        <select name="" class="mode-select">
+          <option selected value="cel">°C</option>
+          <option value="fah">°F</option>
+        </select>
+      </div>
+      <div class="main">
+        <h1 class="location-name">Kolkata</h1>
+        <div class="main-subDisplay">
+          <div class="weather-icon-wrapper">
+            <img
+              src="//cdn.weatherapi.com/weather/64x64/day/143.png"
+              alt=""
+              class="weather-condition-icon"
+            />
+          </div>
+          <div class="wather-info-ctn">
+            <p class="temp-value">20°c</p>
+            <p class="weather-condition-text">Mist</p>
+          </div>
+        </div>
+      </div>
+      <div class="bottom-ctn">
+        <h3>8:30am</h3>
+        <p>Wednesday 1 December 2021</p>
+      </div>
+    </div>
+  </body>
+</html>
