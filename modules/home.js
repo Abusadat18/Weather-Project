@@ -9,3 +9,6 @@ async function getWeatherData(name) {
 
 getWeatherData("kolkata")
 
+const searchInput = document.querySelector(".search-input");
+const searchBtn = document.querySelector(".search-btn");
+console.log(searchBtn);
