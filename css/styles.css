@@ -51,6 +51,11 @@ body {
 .search-btn {
   color: black;
   height: 100%;
+  cursor: pointer;
+}
+
+.search-btn:hover {
+  transform: scale(1.1);
 }
 
 .mode-select {

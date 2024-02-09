@@ -6,12 +6,10 @@ async function getWeatherData(name) {
         const weatherData = await response.json();
         return weatherData;
     } else {
-        console.log("Error");
+        return Promise.reject("Enter a valid location");
     }
 
 }
-
-getWeatherData("kolkata")
 
 const searchInput = document.querySelector(".search-input");
 const searchBtn = document.querySelector(".search-btn");
@@ -21,16 +19,19 @@ const weatherIcon = document.querySelector(".weather-condition-icon");
 const temperature = document.querySelector(".temp-value");
 const weatherText = document.querySelector(".weather-condition-text");
 
-function setDefaultWeather() {
-    const weatherData = getWeatherData("Barddhaman");
+function setCustomWeather(location) {
+    const weatherData = getWeatherData(location);
     weatherData.then((data) => {
         const currentConditons = data.current;
         console.log(currentConditons);
-        setLocation("Barddhaman");
+        setLocation(location);
         setWeatherIcon(currentConditons);
         setTemperature(currentConditons);
         setWeatherText(currentConditons);
         setSelectModeListener(currentConditons);
+    })
+        .catch((err) => {
+        alert(err);
     })
 }
 
@@ -105,7 +106,11 @@ function setSelectModeListener(obj) {
     });
 }
 
-setDefaultWeather();
+searchBtn.addEventListener("click", () => {
+    setCustomWeather(searchInput.value);
+})
+
+setCustomWeather("kolkata");
 updateTime();
   
 
