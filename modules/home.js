@@ -8,3 +8,4 @@ async function getWeatherData(name) {
 }
 
 getWeatherData("kolkata")
+

@@ -15,6 +15,7 @@
     <video autoplay muted loop class="bg-video">
       <source src="./Videos/clear-skies.mp4" type="video/mp4" />
     </video>
+    <div class="overlay"></div>
     <div class="wrapper">
       <div class="top-ctn">
         <div class="search-ctn">
@@ -25,7 +26,7 @@
             id=""
             placeholder="search"
           />
-          <i class="fa-solid fa-magnifying-glass"></i>
+          <i class="fa-solid fa-magnifying-glass search-btn"></i>
         </div>
         <select name="" class="mode-select">
           <option selected value="cel">°C</option>
@@ -42,11 +43,9 @@
               class="weather-condition-icon"
             />
           </div>
-          <div class="wather-info-ctn">
-            <p class="temp-value">20°c</p>
-            <p class="weather-condition-text">Mist</p>
-          </div>
+          <p class="temp-value">20°c</p>
         </div>
+        <p class="weather-condition-text">Mist</p>
       </div>
       <div class="bottom-ctn">
         <h3>8:30am</h3>
