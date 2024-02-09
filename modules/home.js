@@ -30,6 +30,7 @@ function setDefaultWeather() {
         setWeatherIcon(currentConditons);
         setTemperature(currentConditons);
         setWeatherText(currentConditons);
+        setSelectModeListener(currentConditons);
     })
 }
 
@@ -59,7 +60,6 @@ function setCurrentDate() {
 }
 
 function updateTime() {
-
     const months = [
         "January", 
         "February", 
@@ -99,8 +99,11 @@ function updateTime() {
     document.getElementById('date').innerHTML = dateString;
 }
 
-
-  
+function setSelectModeListener(obj) {
+    selectMode.addEventListener("change", () => {
+        setTemperature(obj);
+    });
+}
 
 setDefaultWeather();
 updateTime();
