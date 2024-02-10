@@ -39,7 +39,7 @@ function setCustomWeather(value) {
         setTemperature(currentConditons);
         setWeatherText(currentConditons);
         setSelectModeListener(currentConditons);
-        setBackgroundVideo(currentConditons.condition.text);
+        setBackgroundVideo(currentConditons.condition.text,currentConditons.is_day);
     })
     .catch((err) => {
         removeLoader();
@@ -138,7 +138,7 @@ searchBtn.addEventListener("click", () => {
     setCustomWeather(searchInput.value);
 })
 
-function setBackgroundVideo(condition) {
+function setBackgroundVideo(condition,isDay) {
     const video = document.querySelector("video");
     const bgSrc = document.querySelector(".bg-src");
     if (condition === "Mist") {
@@ -147,12 +147,16 @@ function setBackgroundVideo(condition) {
     else if (condition === "Overcast") {
         bgSrc.src = "./Videos/overcast.mp4";
     }
+    else if ((condition === "Light rain") || (condition === "Moderate rain")) {
+        bgSrc.src = "./Videos/rain.mp4";
+    }
+    else if (!isDay) {
+        bgSrc.src = "./Videos/night.mp4";
+    }
     else if (condition === "Partly cloudy") {
         bgSrc.src = "./Videos/partly-cloudy.mp4";
     }
-    else if ((condition === "Light rain") || (condition === "Moderate rain")) {
-        bgSrc.src = "./Videos/rain.mp4";
-    } else {
+    else {
         bgSrc.src = "./Videos/clear.mp4";
     }
     video.load()
