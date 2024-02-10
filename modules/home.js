@@ -19,12 +19,13 @@ const weatherIcon = document.querySelector(".weather-condition-icon");
 const temperature = document.querySelector(".temp-value");
 const weatherText = document.querySelector(".weather-condition-text");
 
-function setCustomWeather(location) {
-    const weatherData = getWeatherData(location);
+function setCustomWeather(value) {
+    const weatherData = getWeatherData(capitalizeFirstLetter(value));
     weatherData.then((data) => {
         const currentConditons = data.current;
+        const locationDetails = data.location;
         console.log(currentConditons);
-        setLocation(location);
+        setLocation(locationDetails.name);
         setWeatherIcon(currentConditons);
         setTemperature(currentConditons);
         setWeatherText(currentConditons);
@@ -91,8 +92,7 @@ function updateTime() {
     // Add leading zeros if necessary
     hours = hours < 10 ? '0' + hours : hours;
     minutes = minutes < 10 ? '0' + minutes : minutes;
-    seconds = seconds < 10 ? '0' + seconds : seconds;
-  
+    
     var timeString = `${hours} : ${minutes} ${ampm}`;
     var dateString = `${daysOfWeek[dayName]} ${day} ${months[month]} ${year}`;
   
@@ -106,12 +106,21 @@ function setSelectModeListener(obj) {
     });
 }
 
+function capitalizeFirstLetter(str) {
+    return str.toLowerCase().replace(/\b\w/g, function(char) {
+      return char.toUpperCase();
+    });
+  }
+
 searchBtn.addEventListener("click", () => {
     setCustomWeather(searchInput.value);
 })
 
-setCustomWeather("kolkata");
-updateTime();
+document.addEventListener("DOMContentLoaded", () => {
+    setCustomWeather("Kolkata");
+    setInterval(updateTime, 1000);
+   
+})
   
 
 
