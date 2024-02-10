@@ -1,5 +1,5 @@
 async function getWeatherData(name) {
-    const response = await fetch(`http://api.weatherapi.com/v1/current.json?key=211bab2228c442e69df233619240302&q=${name}`, {
+    const response = await fetch(`https://api.weatherapi.com/v1/current.json?key=211bab2228c442e69df233619240302&q=${name}`, {
         mode: "cors"
     })
     if (response.ok) {
