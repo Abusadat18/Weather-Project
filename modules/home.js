@@ -11,20 +11,25 @@ async function getWeatherData(name) {
 
 }
 
+const wrapper = document.querySelector(".wrapper");
+
 const searchInput = document.querySelector(".search-input");
 const searchBtn = document.querySelector(".search-btn");
 const selectMode = document.querySelector(".mode-select");
+
 const locationName = document.querySelector(".location-name");
 const countryName = document.querySelector(".countryName");
 const weatherIcon = document.querySelector(".weather-condition-icon");
 const temperature = document.querySelector(".temp-value");
 const weatherText = document.querySelector(".weather-condition-text");
 
-
+const loader = document.getElementById("loader");
 
 function setCustomWeather(value) {
+    addLoader();
     const weatherData = getWeatherData(capitalizeFirstLetter(value));
     weatherData.then((data) => {
+        removeLoader();
         const currentConditons = data.current;
         const locationDetails = data.location;
         console.log(locationDetails);
@@ -36,9 +41,20 @@ function setCustomWeather(value) {
         setSelectModeListener(currentConditons);
         setBackgroundVideo(currentConditons.condition.text);
     })
-        .catch((err) => {
+    .catch((err) => {
+        removeLoader();
         alert(err);
     })
+}
+
+function removeLoader() {
+    loader.classList.remove("loader");
+    wrapper.classList.remove("hide");
+}
+
+function addLoader() {
+    loader.classList.add("loader");
+    wrapper.classList.add("hide");
 }
 
 function setLocation(location,country) {
@@ -99,7 +115,7 @@ function updateTime() {
     hours = hours < 10 ? '0' + hours : hours;
     minutes = minutes < 10 ? '0' + minutes : minutes;
     
-    var timeString = `${hours}:${minutes} ${ampm}`;
+    var timeString = `${hours}:${minutes} ${ampm} (IST)`;
     var dateString = `${daysOfWeek[dayName]} ${day} ${months[month]} ${year}`;
   
     document.getElementById('time').innerHTML = timeString;
@@ -144,6 +160,7 @@ function setBackgroundVideo(condition) {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
+    addLoader();
     setCustomWeather("Kolkata");
     updateTime();
     setInterval(updateTime, 1000);
