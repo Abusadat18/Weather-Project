@@ -16,6 +16,28 @@ body {
   color: white;
 }
 
+/* BACKGROUND VIDEO SETTINGS  */
+
+.bg-video {
+  position: absolute;
+  z-index: -1;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: 1;
+  background: rgba(0, 0, 0, 0.6);
+}
+
+/* BG SETTING ENDS */
+
 .wrapper {
   width: 450px;
   height: 100%;
@@ -109,23 +131,4 @@ body {
 
 .bottom-ctn > p {
   font-size: 16px;
-}
-
-/* BACKGROUND VIDEO SETTINGS  */
-
-.bg-video {
-  position: absolute;
-  right: 0;
-  bottom: 0;
-  z-index: -1;
-}
-
-.overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  z-index: 1;
-  background: rgba(0, 0, 0, 0.6);
 }

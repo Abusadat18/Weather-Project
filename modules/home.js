@@ -15,29 +15,35 @@ const searchInput = document.querySelector(".search-input");
 const searchBtn = document.querySelector(".search-btn");
 const selectMode = document.querySelector(".mode-select");
 const locationName = document.querySelector(".location-name");
+const countryName = document.querySelector(".countryName");
 const weatherIcon = document.querySelector(".weather-condition-icon");
 const temperature = document.querySelector(".temp-value");
 const weatherText = document.querySelector(".weather-condition-text");
+
+
 
 function setCustomWeather(value) {
     const weatherData = getWeatherData(capitalizeFirstLetter(value));
     weatherData.then((data) => {
         const currentConditons = data.current;
         const locationDetails = data.location;
+        console.log(locationDetails);
         console.log(currentConditons);
-        setLocation(locationDetails.name);
+        setLocation(locationDetails.name,locationDetails.country);
         setWeatherIcon(currentConditons);
         setTemperature(currentConditons);
         setWeatherText(currentConditons);
         setSelectModeListener(currentConditons);
+        setBackgroundVideo(currentConditons.condition.text);
     })
         .catch((err) => {
         alert(err);
     })
 }
 
-function setLocation(location) {
+function setLocation(location,country) {
     locationName.textContent = location;
+    countryName.textContent = country;
 }
 
 function setWeatherIcon(obj) {
@@ -93,7 +99,7 @@ function updateTime() {
     hours = hours < 10 ? '0' + hours : hours;
     minutes = minutes < 10 ? '0' + minutes : minutes;
     
-    var timeString = `${hours} : ${minutes} ${ampm}`;
+    var timeString = `${hours}:${minutes} ${ampm}`;
     var dateString = `${daysOfWeek[dayName]} ${day} ${months[month]} ${year}`;
   
     document.getElementById('time').innerHTML = timeString;
@@ -116,11 +122,34 @@ searchBtn.addEventListener("click", () => {
     setCustomWeather(searchInput.value);
 })
 
+function setBackgroundVideo(condition) {
+    const video = document.querySelector("video");
+    const bgSrc = document.querySelector(".bg-src");
+    if (condition === "Mist") {
+        bgSrc.src = "./Videos/mist.mp4";
+    }
+    else if (condition === "Overcast") {
+        bgSrc.src = "./Videos/overcast.mp4";
+    }
+    else if (condition === "Partly cloudy") {
+        bgSrc.src = "./Videos/partly-cloudy.mp4";
+    }
+    else if ((condition === "Light rain") || (condition === "Moderate rain")) {
+        bgSrc.src = "./Videos/rain.mp4";
+    } else {
+        bgSrc.src = "./Videos/clear.mp4";
+    }
+    video.load()
+    video.play();
+}
+
 document.addEventListener("DOMContentLoaded", () => {
     setCustomWeather("Kolkata");
+    updateTime();
     setInterval(updateTime, 1000);
-   
 })
+
+
   
 
 
