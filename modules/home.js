@@ -150,6 +150,7 @@ function setBackgroundVideo(condition,isDay) {
     else if ((condition === "Light rain") || (condition === "Moderate rain")) {
         bgSrc.src = "./Videos/rain.mp4";
     }
+    /* Checking For Night */
     else if (!isDay) {
         bgSrc.src = "./Videos/night.mp4";
     }
