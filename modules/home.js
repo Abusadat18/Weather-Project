@@ -29,17 +29,15 @@ function setCustomWeather(value) {
     addLoader();
     const weatherData = getWeatherData(capitalizeFirstLetter(value));
     weatherData.then((data) => {
-        removeLoader();
         const currentConditons = data.current;
         const locationDetails = data.location;
-        console.log(locationDetails);
-        console.log(currentConditons);
+        setBackgroundVideo(currentConditons.condition.text, currentConditons.is_day);
+        removeLoader();
         setLocation(locationDetails.name,locationDetails.country);
         setWeatherIcon(currentConditons);
         setTemperature(currentConditons);
         setWeatherText(currentConditons);
         setSelectModeListener(currentConditons);
-        setBackgroundVideo(currentConditons.condition.text,currentConditons.is_day);
     })
     .catch((err) => {
         removeLoader();
@@ -145,7 +143,7 @@ function setBackgroundVideo(condition,isDay) {
         bgSrc.src = "./Videos/mist.mp4";
     }
     else if (condition === "Overcast") {
-        bgSrc.src = "./Videos/overcast.mp4";
+        bgSrc.src = "./Videos/overcast2.mp4";
     }
     else if ((condition === "Light rain") || (condition === "Moderate rain")) {
         bgSrc.src = "./Videos/rain.mp4";
@@ -165,7 +163,6 @@ function setBackgroundVideo(condition,isDay) {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-    addLoader();
     setCustomWeather("Kolkata");
     updateTime();
     setInterval(updateTime, 1000);
