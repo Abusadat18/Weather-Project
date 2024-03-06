@@ -1,6 +1,6 @@
 # Weather-Project
 
-A weather forecast project using HTML,CSS,JS.
+A weather forecast project using HTML,CSS,JS !
 
 _Bugs to fix:_
 
